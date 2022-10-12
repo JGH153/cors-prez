@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>CORS and more</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+
+    <style>
+      /* only for prez, not for speaker view */
+      @media screen and (min-width: 1500px) {
+        .slides {
+          width: 88% !important;
+        }
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        text-transform: none !important;
+      }
+      .cors {
+        color: #ff5d32 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 class="cors">CORS and more</h1>
+          <h2>Jan Greger Hemb</h2>
+          <h3>This was hard to understand</h3>
+        </section>
+        <section>
+          <section>
+            <h1>The problem</h1>
+            <h2>Protecting users</h2>
+          </section>
+          <section>
+            <h1>Same-origin policy</h1>
+            <h2>protocol://origin:port</h2>
+            <h3>HTTP or HTTPS</h3>
+            <h3>vg.no or jpro.no</h3>
+            <h3>Port 80 or 4000</h3>
+          </section>
+          <section>
+            <h1>Netscape Navigator 2.02 in 1995</h1>
+            <h2>protect cross-origin access to the DOM</h2>
+            <h2>For img, links, video, iframe</h2>
+          </section>
+          <section>
+            <h1>Danger of cross origin</h1>
+            <h2>Send request in background with your credentials</h2>
+            <h2>credentials = cookies</h2>
+          </section>
+          <section>
+            <h2>Access iframe to steal content</h2>
+            <img src="media/bank.png" />
+          </section>
+          <section>
+            <h1>But sometime you need to break Same-origin</h1>
+            <h2>Third party API</h2>
+            <h2>Different domain for backend</h2>
+            <h1>CORS made to open up Same-origin policy</h1>
+            <h2>Here to help us</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>How CORS works</h1>
+            <h2>Open up for access</h2>
+            <h2>Browser based security</h2>
+            <h2>Simple VS Complex requests</h2>
+          </section>
+          <section>
+            <h1>Simple request</h1>
+            <h2>GET, POST, HEAD</h2>
+            <h2>No fancy headers</h2>
+            <h2>No JSON</h2>
+            <h2>Always complex</h2>
+          </section>
+          <section>
+            <h1>Preflight Options request</h1>
+            <h1>What do you support?</h1>
+            <h3>Access-Control-Allow-<span class="cors">Origin</span></h3>
+            <h3>Access-Control-Allow-<span class="cors">Methods</span></h3>
+            <h3>Access-Control-Allow-<span class="cors">Headers</span></h3>
+            <h2>Opt-in</h2>
+          </section>
+          <section>
+            <pre><code class="typescript" data-trim data-line-numbers>
+							fetch('https://rickandmortyapi.com/api/character/311',
+							 {method: 'DELETE'})
+						</code></pre>
+          </section>
+          <section><img src="media/option_request.png" /></section>
+          <section><img src="media/option_response.png" /></section>
+          <section>httptoolkit.com/will-it-cors/</section>
+
+          <section>
+            <h1>Let's dig deeper</h1>
+          </section>
+          <section>
+            <h2>Access-Control-Allow-<span class="cors">Origin</span></h2>
+            <h2>Matches origin</h2>
+            <h2>* or single origin</h2>
+            <h2>Can programmatically match incoming origin</h2>
+          </section>
+          <section>
+            <h2>Access-Control-Allow-<span class="cors">Headers</span></h2>
+            <h2>Extra headers</h2>
+          </section>
+          <section>
+            <h2>Access-Control-Allow-<span class="cors">Methods</span></h2>
+          </section>
+          <section>
+            <h2>Access-Control-Allow-<span class="cors">Credentials</span></h2>
+            <pre><code class="typescript" data-trim data-line-numbers>
+							fetch('https://rickandmortyapi.com/api/character/311', 
+							{method: 'DELETE', credentials: "include"})
+						</code></pre>
+            <h2>true</h2>
+            <h2>
+              Can't combine with Access-Control-Allow-<span class="cors"
+                >Origin</span
+              >
+              *
+            </h2>
+          </section>
+          <section>
+            <h2>Access-Control-Max-Age</h2>
+            <h2>How long it can be cached</h2>
+            <h2>24 hours</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Transmit credentials</h1>
+            <h2>Not by default</h2>
+            <pre><code class="typescript" data-trim data-line-numbers>
+							fetch('https://rickandmortyapi.com/api/character/311', 
+							{method: 'DELETE', credentials: "include"})
+						</code></pre>
+            <h2>So much problems with cookies</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Local storage</h1>
+            <h2>Send manually</h2>
+            <h2>Cross Site Scripting (XSS)</h2>
+            <pre><code class="html" data-trim data-line-numbers>
+							<div dangerouslySetInnerHTML={createMarkup()} />
+						</code></pre>
+            <h2>HTML editors</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Cookie</h1>
+            <h2>Secure = Only HTTPS</h2>
+            <h2>HttpsOnly = No access from JavaScript</h2>
+            <h2>SameSite</h2>
+          </section>
+          <section>
+            <h1>SameSite</h1>
+            <h2>Strict = no cookies transmitted cross site</h2>
+            <h2>Will not be logged inn when following link</h2>
+            <h2>Lax = Script, but passed on links</h2>
+            <h2>None = Always send (requires HTTPS)</h2>
+          </section>
+          <section>
+            <h1>Using cookies</h1>
+            <h2>Secure, HttpsOnly and SameSite</h2>
+            <h2>Still vulnerable to to XSS</h2>
+            <h2>Security is really hard</h2>
+          </section>
+          <section>
+            <h1>Cookies slightly more secure</h1>
+            <h2>Never give GET side-effects</h2>
+            <h2>Consider CSRF token</h2>
+            <h2>Need additional security</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Content security policy</h1>
+            <h2>XSS protection</h2>
+            <h2>Limit what scripts can run</h2>
+            <h2>Can enforce HTTPS</h2>
+            <h2>
+              Can enforce loading of scripts, media, images to self (same
+              origin)
+            </h2>
+          </section>
+          <section>
+            <h1>CSP config</h1>
+            <h2>Script-src</h2>
+            <h2>Img-src</h2>
+            <h2>default-src</h2>
+            <h2>Report-to</h2>
+            <h2>Could en up blocking valid assets</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>Conclusions</h1>
+            <h2>Configure CORS correctly, it's easy</h2>
+            <h2>Consider local storage vs cookie</h2>
+            <h2>Have a CSP</h2>
+          </section>
+        </section>
+        <section>
+          <section>Extra bits</section>
+          <section>Google analytics is technically xss</section>
+        </section>
+        <section>Over</section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        history: true,
+        controls: false,
+        progress: false,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
