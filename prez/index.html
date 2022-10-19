@@ -15,6 +15,7 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="product-colors.css" />
 
     <style>
       /* only for prez, not for speaker view */
@@ -33,71 +34,105 @@
       .cors {
         color: #ff5d32 !important;
       }
+      .sameorigin {
+        color: #ec3e40 !important;
+      }
+      .http {
+        color: #f20200 !important;
+      }
+      .https {
+        color: #3ab54a !important;
+      }
     </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <section>
-          <h1 class="cors">CORS and more</h1>
-          <h2>Jan Greger Hemb</h2>
-          <h3>This was hard to understand</h3>
+          <h1 class=""><span class="cors">CORS</span> and more</h1>
+          <h2 class="jpro">Jan Greger Hemb</h2>
+          <h3 class="fragment">
+            This was <span class="error">hard</span> to understand
+          </h3>
+          <h2 class="fragment">Interview</h2>
         </section>
         <section>
           <section>
-            <h1>The problem</h1>
-            <h2>Protecting users</h2>
+            <h1>The <span class="error">problem</span></h1>
+            <h2 class="fragment">Protecting users</h2>
           </section>
           <section>
-            <h1>Same-origin policy</h1>
-            <h2>protocol://origin:port</h2>
-            <h3>HTTP or HTTPS</h3>
-            <h3>vg.no or jpro.no</h3>
-            <h3>Port 80 or 4000</h3>
+            <h1><span class="sameorigin">Same-origin</span> policy</h1>
+            <h2 class="fragment">protocol://origin:port</h2>
+            <h3 class="fragment">
+              <span class="http">HTTP</span> or <span class="https">HTTPS</span>
+            </h3>
+            <h3 class="fragment">vg.no or jpro.no</h3>
+            <h3 class="fragment">Port 80 or 4000</h3>
           </section>
           <section>
-            <h1>Netscape Navigator 2.02 in 1995</h1>
-            <h2>protect cross-origin access to the DOM</h2>
-            <h2>For img, links, video, iframe</h2>
-          </section>
-          <section>
-            <h1>Danger of cross origin</h1>
-            <h2>Send request in background with your credentials</h2>
-            <h2>credentials = cookies</h2>
+            <h1><span class="netscape">Netscape Navigator</span> 2.02</h1>
+            <h1 class="fragment">1995</h1>
+            <h2 class="fragment">
+              protect cross-origin access to the <span class="html">DOM</span>
+            </h2>
+            <h2 class="fragment">For img, links, video, iframe</h2>
           </section>
           <section>
             <h2>Access iframe to steal content</h2>
-            <img src="media/bank.png" />
+            <img class="fragment" src="media/bank.png" />
+            <h2 class="fragment">
+              <span class="sameorigin">Same-origin</span> Blocks it
+            </h2>
           </section>
           <section>
-            <h1>But sometime you need to break Same-origin</h1>
-            <h2>Third party API</h2>
-            <h2>Different domain for backend</h2>
-            <h1>CORS made to open up Same-origin policy</h1>
-            <h2>Here to help us</h2>
+            <h1><span class="error">Danger</span> of cross origin</h1>
+            <h2 class="fragment">In background with your credentials</h2>
+            <pre><code class="typescript fragment" data-trim data-line-numbers>
+							fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+						</code></pre>
+            <h2 class="fragment">credentials = cookies 🍪</h2>
+          </section>
+
+          <section>
+            <h1>Breaking <span class="sameorigin">Same-origin</span></h1>
+            <h2 class="fragment">Third party API</h2>
+            <h2 class="fragment">Different domain for backend</h2>
+            <h2 class="fragment">
+              <span class="cors">CORS</span> opens up
+              <span class="sameorigin">Same-origin</span> policy
+            </h2>
+            <h2 class="fragment">Here to help us</h2>
           </section>
         </section>
         <section>
           <section>
-            <h1>How CORS works</h1>
-            <h2>Open up for access</h2>
-            <h2>Browser based security</h2>
-            <h2>Simple VS Complex requests</h2>
+            <h1>How <span class="cors">CORS</span> works</h1>
+            <h2 class="fragment">Open up for access</h2>
+            <h2 class="fragment">Browser based security</h2>
+            <h2 class="fragment">Protecting users</h2>
+            <h2 class="fragment">Simple VS Complex requests</h2>
           </section>
           <section>
             <h1>Simple request</h1>
-            <h2>GET, POST, HEAD</h2>
-            <h2>No fancy headers</h2>
-            <h2>No JSON</h2>
-            <h2>Always complex</h2>
+            <h2 class="fragment">GET, POST, HEAD</h2>
+            <h2 class="fragment">No fancy headers</h2>
+            <h2 class="fragment">No JSON</h2>
+            <h2 class="fragment">Always complex</h2>
           </section>
           <section>
             <h1>Preflight Options request</h1>
-            <h1>What do you support?</h1>
-            <h3>Access-Control-Allow-<span class="cors">Origin</span></h3>
-            <h3>Access-Control-Allow-<span class="cors">Methods</span></h3>
-            <h3>Access-Control-Allow-<span class="cors">Headers</span></h3>
-            <h2>Opt-in</h2>
+            <h1 class="fragment">What do you support?</h1>
+            <h3 class="fragment">
+              Access-Control-Allow-<span class="cors">Origin</span>
+            </h3>
+            <h3 class="fragment">
+              Access-Control-Allow-<span class="cors">Methods</span>
+            </h3>
+            <h3 class="fragment">
+              Access-Control-Allow-<span class="cors">Headers</span>
+            </h3>
+            <h2 class="fragment">Opt-in</h2>
           </section>
           <section>
             <pre><code class="typescript" data-trim data-line-numbers>
@@ -107,126 +142,191 @@
           </section>
           <section><img src="media/option_request.png" /></section>
           <section><img src="media/option_response.png" /></section>
-          <section>httptoolkit.com/will-it-cors/</section>
+          <section>
+            <h2>
+              <a href="https://httptoolkit.com/will-it-cors/" target="_blank">
+                httptoolkit.com/will-it-cors/</a
+              >
+            </h2>
+          </section>
 
           <section>
-            <h1>Let's dig deeper</h1>
+            <h2 class="">Not allowed to send</h2>
+            <h2 class="fragment">Allowed to send</h2>
+            <h2 class="fragment">Allowed to read response</h2>
+          </section>
+
+          <section>
+            <h1>Let's dig deeper ⛏️</h1>
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Origin</span></h2>
-            <h2>Matches origin</h2>
-            <h2>* or single origin</h2>
-            <h2>Can programmatically match incoming origin</h2>
+            <h2 class="fragment">
+              * or single <span class="cors">origin</span>
+            </h2>
+            <h2 class="fragment">
+              Programmatically match
+              <span class="cors">origin</span>
+            </h2>
+            <h2 class="fragment">White list</h2>
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Headers</span></h2>
-            <h2>Extra headers</h2>
+            <h2 class="fragment">Extra headers</h2>
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Methods</span></h2>
+            <h2 class="fragment">DELETE, PUT, PATCH</h2>
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Credentials</span></h2>
-            <pre><code class="typescript" data-trim data-line-numbers>
+            <h2 class="fragment">credentials = cookies 🍪</h2>
+            <pre><code class="typescript fragment" data-trim data-line-numbers>
 							fetch('https://rickandmortyapi.com/api/character/311', 
 							{method: 'DELETE', credentials: "include"})
 						</code></pre>
-            <h2>true</h2>
-            <h2>
-              Can't combine with Access-Control-Allow-<span class="cors"
+            <h2 class="fragment">true</h2>
+            <h3 class="fragment">
+              Can't combine Access-Control-Allow-<span class="cors"
                 >Origin</span
               >
               *
-            </h2>
+            </h3>
           </section>
           <section>
-            <h2>Access-Control-Max-Age</h2>
-            <h2>How long it can be cached</h2>
-            <h2>24 hours</h2>
+            <h2>Access-Control-<span class="cors">Max-Age</span></h2>
+            <h2 class="fragment">
+              How long it can be <span class="cors">cached</span>
+            </h2>
+            <h2 class="fragment">24 hours</h2>
           </section>
         </section>
         <section>
           <section>
             <h1>Transmit credentials</h1>
-            <h2>Not by default</h2>
-            <pre><code class="typescript" data-trim data-line-numbers>
+            <h2 class="fragment">Not by default</h2>
+            <pre><code class="typescript fragment" data-trim data-line-numbers>
 							fetch('https://rickandmortyapi.com/api/character/311', 
 							{method: 'DELETE', credentials: "include"})
 						</code></pre>
-            <h2>So much problems with cookies</h2>
+            <h2 class="fragment">So much problems with cookies 🍪</h2>
           </section>
         </section>
         <section>
           <section>
             <h1>Local storage</h1>
-            <h2>Send manually</h2>
-            <h2>Cross Site Scripting (XSS)</h2>
-            <pre><code class="html" data-trim data-line-numbers>
-							<div dangerouslySetInnerHTML={createMarkup()} />
+            <h2 class="fragment">Send manually</h2>
+            <h2 class="fragment">Cross Site Scripting (XSS)</h2>
+            <pre><code class="html fragment" data-trim data-line-numbers>
+							&lt;div dangerouslySetInnerHTML={getMyInnerHtml()} /&gt;
 						</code></pre>
-            <h2>HTML editors</h2>
+            <h2 class="fragment"><span class="html">HTML</span> editors</h2>
+            <h2 class="fragment">Markdown editors</h2>
           </section>
         </section>
         <section>
           <section>
-            <h1>Cookie</h1>
-            <h2>Secure = Only HTTPS</h2>
-            <h2>HttpsOnly = No access from JavaScript</h2>
-            <h2>SameSite</h2>
+            <h1>Cookie 🍪</h1>
+            <h2 class="fragment">
+              Secure = Only <span class="https">HTTPS</span>
+            </h2>
+            <h2 class="fragment">HttpsOnly = No access from JavaScript</h2>
           </section>
           <section>
             <h1>SameSite</h1>
-            <h2>Strict = no cookies transmitted cross site</h2>
-            <h2>Will not be logged inn when following link</h2>
-            <h2>Lax = Script, but passed on links</h2>
-            <h2>None = Always send (requires HTTPS)</h2>
+            <h3 class="fragment">Strict = no cookies transmitted cross site</h3>
+            <h3 class="fragment">Will not be logged inn when following link</h3>
+            <h2 class="fragment">Link to your bank</h2>
+            <h2 class="fragment">Lax = Script, but passed on links</h2>
+            <h2 class="fragment">
+              None = Always send (requires <span class="https">HTTPS</span>)
+            </h2>
           </section>
           <section>
-            <h1>Using cookies</h1>
-            <h2>Secure, HttpsOnly and SameSite</h2>
-            <h2>Still vulnerable to to XSS</h2>
-            <h2>Security is really hard</h2>
+            <h1>Using cookies 🍪</h1>
+            <h2 class="fragment">Secure, HttpsOnly and SameSite</h2>
+            <h2 class="fragment">
+              Still vulnerable to to <span class="error">XSS</span>
+            </h2>
+            <pre><code class="typescript fragment" data-trim data-line-numbers>
+							fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+						</code></pre>
+            <h2 class="fragment">
+              Security is really <span class="error">hard</span>
+            </h2>
           </section>
           <section>
-            <h1>Cookies slightly more secure</h1>
-            <h2>Never give GET side-effects</h2>
-            <h2>Consider CSRF token</h2>
-            <h2>Need additional security</h2>
+            <h2>Cookies slightly more secure</h2>
+            <h2 class="fragment">On-site attack ⚔️</h2>
+            <h2 class="fragment">Never give GET side-effects</h2>
+            <h2 class="fragment">Consider CSRF token</h2>
+            <h2 class="fragment">Need additional security</h2>
           </section>
         </section>
         <section>
           <section>
-            <h1>Content security policy</h1>
-            <h2>XSS protection</h2>
-            <h2>Limit what scripts can run</h2>
-            <h2>Can enforce HTTPS</h2>
-            <h2>
-              Can enforce loading of scripts, media, images to self (same
-              origin)
+            <h1>
+              <span class="cors">C</span>ontent
+              <span class="cors">s</span>ecurity
+              <span class="cors">p</span>olicy
+            </h1>
+            <h2 class="fragment"><span class="error">XSS</span> protection</h2>
+            <h2 class="fragment">Limit what scripts can run</h2>
+            <h2 class="fragment">
+              Can enforce <span class="https">HTTPS</span>
+            </h2>
+            <h2 class="fragment">
+              Can enforce loading of scripts, media, images to self (<span
+                class="sameorigin"
+              >
+                same origin </span
+              >)
             </h2>
           </section>
           <section>
-            <h1>CSP config</h1>
-            <h2>Script-src</h2>
-            <h2>Img-src</h2>
-            <h2>default-src</h2>
-            <h2>Report-to</h2>
-            <h2>Could en up blocking valid assets</h2>
+            <h1><span class="cors">CSP</span> config</h1>
+            <h2 class="fragment">Script-src</h2>
+            <h2 class="fragment">Img-src</h2>
+            <h2 class="fragment">default-src</h2>
+
+            <pre><code class="html fragment" data-trim data-line-numbers>
+              &lt;meta
+              http-equiv="Content-Security-Policy"
+              content="default-src 'self'; img-src https://*; child-src 'none';" /&gt;
+            </code></pre>
           </section>
+          <section>
+            <h1 class="">Report-to</h1>
+            <h2 class="fragment">Could en up blocking valid assets</h2>
+            <h2 class="fragment">Google analytics is technically xss</h2>
+          </section>
+        </section>
+        <section>
+          <h1>Bypass <span class="cors">CORS</span></h1>
+          <h2 class="fragment">Forward request</h2>
+          <pre><code class="typescript fragment" data-trim data-line-numbers>
+            fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+          </code></pre>
+          <h2 class="fragment">No cookies</h2>
+          <h2 class="fragment">
+            <span class="cors">CORS</span> can't protect API
+          </h2>
         </section>
         <section>
           <section>
             <h1>Conclusions</h1>
-            <h2>Configure CORS correctly, it's easy</h2>
-            <h2>Consider local storage vs cookie</h2>
-            <h2>Have a CSP</h2>
+            <h2 class="fragment">
+              Configure <span class="cors">CORS</span> correctly, it's easy
+            </h2>
+            <h2 class="fragment">Consider local storage vs cookie 🍪</h2>
+            <h2 class="fragment">Have a <span class="cors">CSP</span></h2>
           </section>
         </section>
         <section>
           <section>Extra bits</section>
-          <section>Google analytics is technically xss</section>
+          <section><h2>Google analytics is technically xss</h2></section>
         </section>
-        <section>Over</section>
+        <section><h1>Done!</h1></section>
       </div>
     </div>
 
