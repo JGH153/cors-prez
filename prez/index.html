@@ -54,8 +54,9 @@
           <h3 class="fragment">
             This was <span class="error">hard</span> to understand
           </h3>
-          <h2 class="fragment">Interview</h2>
         </section>
+        <section data-background="media/interview.jpg"></section>
+        <section data-background="media/confused.jpg"></section>
         <section>
           <section>
             <h1>The <span class="error">problem</span></h1>
@@ -71,6 +72,18 @@
             <h3 class="fragment">Port 80 or 4000</h3>
           </section>
           <section>
+            <h1 class="success">https://vg.no/</h1>
+            <h2 class="success fragment">https://vg.no/article</h2>
+            <h2 class="success fragment">https://vg.no/login</h2>
+            <h2 class="error fragment">https://news.vg.no/login</h2>
+            <h2 class="error fragment">http://vg.no/</h2>
+            <h2 class="error fragment">https://jpro.no/</h2>
+          </section>
+          <section
+            data-background="media/Netscape_Navigator_2_Screenshot.png"
+            data-background-size="contain"
+          ></section>
+          <section>
             <h1><span class="netscape">Netscape Navigator</span> 2.02</h1>
             <h1 class="fragment">1995</h1>
             <h2 class="fragment">
@@ -82,7 +95,7 @@
             <h2>Access iframe to steal content</h2>
             <img class="fragment" src="media/bank.png" />
             <h2 class="fragment">
-              <span class="sameorigin">Same-origin</span> Blocks it
+              <span class="sameorigin">Same-origin</span> policy blocks it
             </h2>
           </section>
           <section>
@@ -99,6 +112,11 @@
             <h2 class="fragment">Third party API</h2>
             <h2 class="fragment">Different domain for backend</h2>
             <h2 class="fragment">
+              <span class="cors">C</span>ross-<span class="cors">O</span>rigin
+              <span class="cors">R</span>esource
+              <span class="cors">S</span>haring
+            </h2>
+            <h2 class="fragment">
               <span class="cors">CORS</span> opens up
               <span class="sameorigin">Same-origin</span> policy
             </h2>
@@ -108,21 +126,28 @@
         <section>
           <section>
             <h1>How <span class="cors">CORS</span> works</h1>
-            <h2 class="fragment">Open up for access</h2>
-            <h2 class="fragment">Browser based security</h2>
-            <h2 class="fragment">Protecting users</h2>
+            <h2 class="fragment">
+              Open up for <span class="cors">access</span>
+            </h2>
+            <h2 class="fragment">
+              Browser based <span class="cors">security</span>
+            </h2>
+            <h2 class="fragment">Protecting <span class="cors">users</span></h2>
+            <h2 class="fragment">
+              Protecting <span class="cors">credentials</span>
+            </h2>
             <h2 class="fragment">Simple VS Complex requests</h2>
           </section>
           <section>
             <h1>Simple request</h1>
             <h2 class="fragment">GET, POST, HEAD</h2>
             <h2 class="fragment">No fancy headers</h2>
-            <h2 class="fragment">No JSON</h2>
+            <h2 class="fragment">No <span class="json">JSON</span></h2>
             <h2 class="fragment">Always complex</h2>
           </section>
           <section>
-            <h1>Preflight Options request</h1>
-            <h1 class="fragment">What do you support?</h1>
+            <h1>Preflight <span class="cors">Options</span> request</h1>
+            <h2 class="fragment">What do you support?</h2>
             <h3 class="fragment">
               Access-Control-Allow-<span class="cors">Origin</span>
             </h3>
@@ -131,6 +156,9 @@
             </h3>
             <h3 class="fragment">
               Access-Control-Allow-<span class="cors">Headers</span>
+            </h3>
+            <h3 class="fragment">
+              Access-Control-Allow-<span class="cors">Credentials</span>
             </h3>
             <h2 class="fragment">Opt-in</h2>
           </section>
@@ -151,13 +179,15 @@
           </section>
 
           <section>
-            <h2 class="">Not allowed to send</h2>
-            <h2 class="fragment">Allowed to send</h2>
-            <h2 class="fragment">Allowed to read response</h2>
+            <h2 class="">Not allowed to <span class="cors">send</span></h2>
+            <h2 class="fragment">Allowed to <span class="cors">send</span></h2>
+            <h2 class="fragment">
+              Allowed to <span class="cors">read</span> response
+            </h2>
           </section>
 
           <section>
-            <h1>Let's dig deeper ⛏️</h1>
+            <h1>Let's dig <span class="cors">deeper</span> ⛏️</h1>
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Origin</span></h2>
@@ -180,7 +210,9 @@
           </section>
           <section>
             <h2>Access-Control-Allow-<span class="cors">Credentials</span></h2>
-            <h2 class="fragment">credentials = cookies 🍪</h2>
+            <h2 class="fragment">
+              <span class="cors">credentials</span> = cookies 🍪
+            </h2>
             <pre><code class="typescript fragment" data-trim data-line-numbers>
 							fetch('https://rickandmortyapi.com/api/character/311', 
 							{method: 'DELETE', credentials: "include"})
@@ -194,6 +226,10 @@
             </h3>
           </section>
           <section>
+            <h2>Access-Control-Expose-<span class="cors">Headers</span></h2>
+            <h2>Custom header in JavaScript</h2>
+          </section>
+          <section>
             <h2>Access-Control-<span class="cors">Max-Age</span></h2>
             <h2 class="fragment">
               How long it can be <span class="cors">cached</span>
@@ -201,21 +237,53 @@
             <h2 class="fragment">24 hours</h2>
           </section>
         </section>
+        <section><img src="media/option_response.png" /></section>
+        <section>
+          <h1>For delete request</h1>
+          <h2>Origin: https://vg.no</h2>
+          <h1>OPTIONS request</h1>
+          <pre><code class="text fragment" data-trim data-line-numbers>
+            Access-Control-Allow-Origin: https://vg.no
+            Access-Control-Allow-Methods: DELETE
+            Access-Control-Allow-Headers: test
+            Access-Control-Allow-Credentials: true
+            Access-Control-Max-Age: 86400
+          </code></pre>
+        </section>
+        <section>
+          <h1>Delete Request</h1>
+          <pre><code class="text fragment" data-trim data-line-numbers>
+            Access-Control-Allow-Origin: https://vg.no
+            Access-Control-Allow-Credentials: true
+            Access-Control-Expose-Headers: MyCustomHeader
+            MyCustomHeader: 123
+          </code></pre>
+          <pre><code class="text fragment" data-trim data-line-numbers>
+            Vary: origin
+            Timing-Allow-Origin: https://vg.no
+          </code></pre>
+        </section>
+        <section data-background="media/pondus.jpg" data-background-size="contain"></section>
+        <section data-background="media/pondus2.jpg" data-background-size="contain"></section>
         <section>
           <section>
-            <h1>Transmit credentials</h1>
+            <h1>Transmit <span class="cors">credentials</span></h1>
             <h2 class="fragment">Not by default</h2>
             <pre><code class="typescript fragment" data-trim data-line-numbers>
 							fetch('https://rickandmortyapi.com/api/character/311', 
 							{method: 'DELETE', credentials: "include"})
 						</code></pre>
-            <h2 class="fragment">So much problems with cookies 🍪</h2>
+            <h2 class="fragment">So many problems with cookies 🍪</h2>
           </section>
         </section>
         <section>
           <section>
             <h1>Local storage</h1>
             <h2 class="fragment">Send manually</h2>
+            <pre><code class="typescript fragment" data-trim data-line-numbers>
+							fetch('https://rickandmortyapi.com/api/character/311?jwt=eyJhbGciOiJIUzI1', 
+							{method: 'DELETE'})
+						</code></pre>
             <h2 class="fragment">Cross Site Scripting (XSS)</h2>
             <pre><code class="html fragment" data-trim data-line-numbers>
 							&lt;div dangerouslySetInnerHTML={getMyInnerHtml()} /&gt;
@@ -234,13 +302,22 @@
           </section>
           <section>
             <h1>SameSite</h1>
-            <h3 class="fragment">Strict = no cookies transmitted cross site</h3>
+            <h3 class="fragment">
+              <span class="solid">Strict</span> = no cookies transmitted cross
+              site
+            </h3>
             <h3 class="fragment">Will not be logged inn when following link</h3>
             <h2 class="fragment">Link to your bank</h2>
-            <h2 class="fragment">Lax = Script, but passed on links</h2>
             <h2 class="fragment">
-              None = Always send (requires <span class="https">HTTPS</span>)
+              <span class="cors">Lax</span> = Strict, but passed on links
             </h2>
+            <h2 class="fragment">
+              <span class="error">None</span> = Always send (requires
+              <span class="https">HTTPS</span>)
+            </h2>
+          </section>
+          <section>
+            <img src="media/coocie.png" />
           </section>
           <section>
             <h1>Using cookies 🍪</h1>
@@ -249,17 +326,22 @@
               Still vulnerable to to <span class="error">XSS</span>
             </h2>
             <pre><code class="typescript fragment" data-trim data-line-numbers>
-							fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+fetch('http://bank.com/api/send', 
+{method: 'POST', credentials: "include" body: accountNumbers()})
 						</code></pre>
             <h2 class="fragment">
               Security is really <span class="error">hard</span>
             </h2>
           </section>
           <section>
-            <h2>Cookies slightly more secure</h2>
+            <h2>Cookies <span class="cors">slightly</span> more secure</h2>
             <h2 class="fragment">On-site attack ⚔️</h2>
-            <h2 class="fragment">Never give GET side-effects</h2>
-            <h2 class="fragment">Consider CSRF token</h2>
+            <h2 class="fragment">
+              Never give GET <span class="error">side-effects</span>
+            </h2>
+            <h2 class="fragment">
+              Consider <span class="cors">CSRF</span> token
+            </h2>
             <h2 class="fragment">Need additional security</h2>
           </section>
         </section>
@@ -294,12 +376,18 @@
               http-equiv="Content-Security-Policy"
               content="default-src 'self'; img-src https://*; child-src 'none';" /&gt;
             </code></pre>
+            <h2 class="fragment">child-src = iFrame</h2>
           </section>
           <section>
             <h1 class="">Report-to</h1>
             <h2 class="fragment">Could en up blocking valid assets</h2>
-            <h2 class="fragment">Google analytics is technically xss</h2>
+            <h2 class="fragment">
+              <span class="cors">Google analytics</span> is technically
+              <span class="error">xss</span>
+            </h2>
           </section>
+          <section data-background="media/report.png"></section>
+          <section data-background="media/csp.png"></section>
         </section>
         <section>
           <h1>Bypass <span class="cors">CORS</span></h1>
@@ -323,10 +411,9 @@
           </section>
         </section>
         <section>
-          <section>Extra bits</section>
-          <section><h2>Google analytics is technically xss</h2></section>
+          <h1 class="">Thanks for listening!</h1>
+          <h1 class="fragment">Curious Programming 📺</h1>
         </section>
-        <section><h1>Done!</h1></section>
       </div>
     </div>
 
