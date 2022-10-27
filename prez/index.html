@@ -90,6 +90,9 @@
               protect cross-origin access to the <span class="html">DOM</span>
             </h2>
             <h2 class="fragment">For img, links, video, iframe</h2>
+            <h1 class="fragment">
+              <span class="sameorigin">Same-origin</span> policy
+            </h1>
           </section>
           <section>
             <h2>Access iframe to steal content</h2>
@@ -102,7 +105,8 @@
             <h1><span class="error">Danger</span> of cross origin</h1>
             <h2 class="fragment">In background with your credentials</h2>
             <pre><code class="typescript fragment" data-trim data-line-numbers>
-							fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+fetch('http://bank.com/api/send', 
+{method: 'POST', credentials: "include" body: accountNumbers()})
 						</code></pre>
             <h2 class="fragment">credentials = cookies 🍪</h2>
           </section>
@@ -139,11 +143,11 @@
             <h2 class="fragment">Simple VS Complex requests</h2>
           </section>
           <section>
-            <h1>Simple request</h1>
+            <h1><span class="cors">Simple</span> request</h1>
             <h2 class="fragment">GET, POST, HEAD</h2>
-            <h2 class="fragment">No fancy headers</h2>
+            <h2 class="fragment">No fancy <span class="cors">headers</span></h2>
             <h2 class="fragment">No <span class="json">JSON</span></h2>
-            <h2 class="fragment">Always complex</h2>
+            <h2 class="fragment">Always <span class="cors">complex</span></h2>
           </section>
           <section>
             <h1>Preflight <span class="cors">Options</span> request</h1>
@@ -179,6 +183,32 @@
           </section>
 
           <section>
+            <h1>For <span class="cors">delete</span> request</h1>
+            <h2 class="fragment">Origin: https://vg.no</h2>
+            <h1 class="fragment"><span class="cors">OPTIONS</span> request</h1>
+            <pre><code class="text fragment" data-trim data-line-numbers>
+              Access-Control-Allow-Origin: https://vg.no
+              Access-Control-Allow-Methods: DELETE
+              Access-Control-Allow-Headers: test
+              Access-Control-Allow-Credentials: true
+              Access-Control-Max-Age: 86400
+            </code></pre>
+          </section>
+          <section>
+            <h1><span class="cors">Delete</span> Request</h1>
+            <pre><code class="text fragment" data-trim data-line-numbers>
+              Access-Control-Allow-Origin: https://vg.no
+              Access-Control-Allow-Credentials: true
+              Access-Control-Expose-Headers: MyCustomHeader
+              MyCustomHeader: 123
+            </code></pre>
+            <pre><code class="text fragment" data-trim data-line-numbers>
+              Vary: origin
+              Timing-Allow-Origin: https://vg.no
+            </code></pre>
+          </section>
+
+          <section>
             <h2 class="">Not allowed to <span class="cors">send</span></h2>
             <h2 class="fragment">Allowed to <span class="cors">send</span></h2>
             <h2 class="fragment">
@@ -200,10 +230,7 @@
             </h2>
             <h2 class="fragment">White list</h2>
           </section>
-          <section>
-            <h2>Access-Control-Allow-<span class="cors">Headers</span></h2>
-            <h2 class="fragment">Extra headers</h2>
-          </section>
+
           <section>
             <h2>Access-Control-Allow-<span class="cors">Methods</span></h2>
             <h2 class="fragment">DELETE, PUT, PATCH</h2>
@@ -226,8 +253,12 @@
             </h3>
           </section>
           <section>
+            <h2>Access-Control-Allow-<span class="cors">Headers</span></h2>
+            <h2 class="fragment">Extra headers</h2>
+          </section>
+          <section>
             <h2>Access-Control-Expose-<span class="cors">Headers</span></h2>
-            <h2>Custom header in JavaScript</h2>
+            <h2 class="fragment">Custom header in JavaScript</h2>
           </section>
           <section>
             <h2>Access-Control-<span class="cors">Max-Age</span></h2>
@@ -238,33 +269,14 @@
           </section>
         </section>
         <section><img src="media/option_response.png" /></section>
-        <section>
-          <h1>For delete request</h1>
-          <h2>Origin: https://vg.no</h2>
-          <h1>OPTIONS request</h1>
-          <pre><code class="text fragment" data-trim data-line-numbers>
-            Access-Control-Allow-Origin: https://vg.no
-            Access-Control-Allow-Methods: DELETE
-            Access-Control-Allow-Headers: test
-            Access-Control-Allow-Credentials: true
-            Access-Control-Max-Age: 86400
-          </code></pre>
-        </section>
-        <section>
-          <h1>Delete Request</h1>
-          <pre><code class="text fragment" data-trim data-line-numbers>
-            Access-Control-Allow-Origin: https://vg.no
-            Access-Control-Allow-Credentials: true
-            Access-Control-Expose-Headers: MyCustomHeader
-            MyCustomHeader: 123
-          </code></pre>
-          <pre><code class="text fragment" data-trim data-line-numbers>
-            Vary: origin
-            Timing-Allow-Origin: https://vg.no
-          </code></pre>
-        </section>
-        <section data-background="media/pondus.jpg" data-background-size="contain"></section>
-        <section data-background="media/pondus2.jpg" data-background-size="contain"></section>
+        <section
+          data-background="media/pondus.jpg"
+          data-background-size="contain"
+        ></section>
+        <section
+          data-background="media/pondus2.jpg"
+          data-background-size="contain"
+        ></section>
         <section>
           <section>
             <h1>Transmit <span class="cors">credentials</span></h1>
